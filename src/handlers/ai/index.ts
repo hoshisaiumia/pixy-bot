@@ -265,7 +265,7 @@ export default function registerAiHandler(client: Client) {
         const msg =
           err?.status === 429
             ? "This is an automated response because I'm currently at sleep, please try messaging me later."
-            : "Talk to my mom at <@1027003473193074688>";
+            : "I'm having a bad time rn, please talk to me again in a few minutes..";
         await message.reply(msg).catch(() => {});
       } finally {
         stopTyping();
