@@ -2,6 +2,7 @@ import { Events, type Client, type Message } from "discord.js";
 import { GoogleGenAI } from "@google/genai";
 import { logConversation } from "../log/index.js";
 import { extractGifTag, searchGif } from "../gifs/index.js";
+import "dotenv/config";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_TOKEN! });
 const MODEL = process.env.GEMINI_MODEL ?? "gemini-3.5-flash-lite";
