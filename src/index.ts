@@ -1,6 +1,8 @@
 import { Client, Events, GatewayIntentBits, Partials } from "discord.js";
 import registerMessageHandler from "./handlers/message/index.js";
 import { config } from "dotenv";
+import registerAiHandler from "./handlers/ai/index.js";
+import { logConversation } from "./handlers/log/index.js";
 
 config();
 
@@ -18,6 +20,7 @@ const app = new Client({
   partials: [Partials.Channel],
 });
 
+registerAiHandler(app);
 registerMessageHandler(app);
 
 app.once(Events.ClientReady, async () => {
