@@ -1,10 +1,12 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { Client, Events, GatewayIntentBits, Partials } from "discord.js";
+import registerMessageHandler from "./handlers/message/index.js";
 import { config } from "dotenv";
 
 config();
 
 const app = new Client({
   intents: [
+    GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.DirectMessages,
@@ -13,11 +15,13 @@ const app = new Client({
     GatewayIntentBits.GuildPresences,
     GatewayIntentBits.MessageContent,
   ],
+  partials: [Partials.Channel],
 });
 
-const main = async () => {
-  await app.login(process.env.DISCORD_BOT_TOKEN);
-  console.log("[BOT] I am online!");
-};
+registerMessageHandler(app);
 
-main();
+app.once(Events.ClientReady, async () => {
+  console.log(`[BOT] I'm online on Discord!`);
+});
+
+app.login(process.env.DISCORD_BOT_TOKEN);
