@@ -1,5 +1,4 @@
 import { Client, Events, GatewayIntentBits, Partials } from "discord.js";
-import registerMessageHandler from "./handlers/message/index.js";
 import { config } from "dotenv";
 import registerAiHandler from "./handlers/ai/index.js";
 import registerPresenceHandler from "./handlers/presence/index.js";
@@ -22,7 +21,6 @@ const app = new Client({
 
 registerPresenceHandler(app);
 registerAiHandler(app);
-registerMessageHandler(app);
 
 app.once(Events.ClientReady, async () => {
   console.log(`[BOT] I'm online on Discord!`);
