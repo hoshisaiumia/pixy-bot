@@ -16,7 +16,7 @@ export async function logConversation(
 ): Promise<void> {
   const logChannelId = process.env.LOG_CHANNEL_ID;
   const ownerId = process.env.OWNER_ID;
-  const logDMs = process.env.LOG_DMS !== "off";
+  const logDMs = process.env.LOG_DMS !== 'false';
 
   if (!logChannelId && !ownerId) return;
   if (!message.inGuild() && !logDMs) return;
